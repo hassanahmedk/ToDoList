@@ -1,0 +1,31 @@
+<%- include("header.ejs") -%> 
+
+    <section id="landing">
+        <div class="login-left">
+<img class="login-pic" src="../public/illustrations/login-1.svg" alt="">
+<h2 class="login-text">
+    <span class="login-text-1">Motivate. </span> <span class="login-text-2">Create. </span><span class="login-text-3">Organize.</span> 
+</h2>
+        </div>
+
+        <div class="login-right">
+            <div class="login-logo">
+                <h1 id="logo-big">
+                    ToDoer
+                </h1>
+            </div>
+
+            <form class="login-form" action="/" method="post">
+                <div class="form-inputs">
+                    <input type="text" name="username" placeholder="Enter Username" autocomplete="off">
+                    <input type="text" name="password" placeholder="Enter Password" autocomplete="off">
+                </div>
+                <button class="login-button" type="submit">Login</button>
+            </form>  
+        </div>
+
+    </section>
+
+
+<%- include("footer.ejs") -%> 
+

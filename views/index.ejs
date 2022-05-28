@@ -1,0 +1,28 @@
+<%- include("header.ejs") -%> 
+
+    <section id="landing">
+        <h1 class="mainHeading">
+            <%= userName %>
+        </h1>
+
+        <div class="list">
+
+        <%  for(let i=0; i<items.length; i++){ %>
+                <div class="listItem">
+                    <input type="checkbox" name="" id="">
+                    <p> <%= items[i] %> </p>
+                </div>
+        <% }                                      %>
+
+            <form action="/" method="post">
+                <input type="text" name="newItem" autocomplete="OFF">
+                <button type="submit" name="page" value="<%=userName%>">Add item</button>
+            </form>
+
+        </div>
+
+    </section>
+
+
+<%- include("footer.ejs") -%> 
+

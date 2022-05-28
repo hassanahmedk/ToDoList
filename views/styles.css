@@ -1,0 +1,26 @@
+#landing{
+    width: 100vw;
+    height: 100vh;
+    background-color: #155;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:space-between;
+    padding: 5% 0;
+}
+
+.listItem{
+    display: flex;
+}
+
+input:checked + p{
+    text-decoration: line-through;
+}
+
+.listItem{
+    background-color: aqua;
+}
+
+
+footer{
+}
