@@ -1,23 +1,74 @@
 <%- include("header.ejs") -%> 
+<script src="https://kit.fontawesome.com/bdc0ef0ab3.js" crossorigin="anonymous"></script>
 
-    <section id="landing">
-        <h1 class="mainHeading">
-            <%= userName %>
-        </h1>
+<section id="landing">
 
-        <div class="list">
-
-        <%  for(let i=0; i<items.length; i++){ %>
-                <div class="listItem">
-                    <input type="checkbox" name="" id="">
-                    <p> <%= items[i] %> </p>
+        <div class="landing-dashboard">
+            <div class="dashboard-header">
+                <h1 class="mainHeading">
+                    Hi there, <%= userName %>!
+                </h1>
+                <div class="time">
+                    3:28 AM
                 </div>
-        <% }                                      %>
+            </div>
 
-            <form action="/" method="post">
-                <input type="text" name="newItem" autocomplete="OFF">
-                <button type="submit" name="page" value="<%=userName%>">Add item</button>
-            </form>
+            <ul class="dashboard-options">
+                <li class="dashboard-option dashboard-option-1 active-list"> <a href="">
+                    <img src="/public/icons/heart.png" alt=""> <span>My Day</span></a>
+                </li>
+                <li class="dashboard-option dashboard-option-2"> <a href="">
+                    <img src="/public/icons/006-favourite.png" alt=""> <span>Important</span></a>
+                </li>
+                <li class="dashboard-option dashboard-option-3"> <a href="">
+                    <img src="/public/icons/002-calendar-1.png" alt=""> <span>Planned</span></a>
+                </li>
+                <li class="dashboard-option dashboard-option-4"> <a href="">
+                    <img src="/public/icons/009-checked-1.png" alt=""> <span>Completed</span></a>
+                </li>
+                <li class="dashboard-option dashboard-option-4"> <a href="">
+                    <img src="/public/icons/010-home.png" alt=""> <span>All Tasks</span></a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="landing-list">
+            <div class="list-header">
+                <h2 class="list-name">
+                    My Day
+                </h2>
+                <h3 class="list-date">
+                    Wednesday, July 06 
+                </h3>
+            </div>
+            <div class="list">
+        
+            <%  items.forEach(element => {            %>
+           
+                    <div class="listItem">
+                        <input type="checkbox" name="" id="">
+                        <p> <%= element.data %> </p>
+
+                        <form id="favoriteItem" action="/changeFavorite" method="post">
+                            <% if(element.important === true){     %>
+                                    <img onClick="this.form.submit()" value="aaa" src="../public/icons/imp-filled.png" class="unfilled-star star" alt="" srcset="">
+                                    <input style="display:none;" name="id" type="text" value="<%=element._id%>">
+                                    <input style="display:none;" name="favoriteStatus" type="text" value="true">
+                                <% } else {   %>
+                                    <img onClick="this.form.submit()" value="aaa" src="../public/icons/imp-unfilled.png" class="unfilled-star star" alt="" srcset="">
+                                    <input style="display:none;" name="id" type="text" value="<%=element._id%>">
+                                    <input style="display:none;" name="favoriteStatus" type="text" value="false">
+                                <% }    %>
+                        </form>
+                    </div>
+            <% });                                     %>
+
+            </div>
+        
+        <form class="add-item" action="/addItem" method="POST">
+            <input type="text" name="newItem" autocomplete="OFF">
+            <button class="newItem-btn" type="submit" name="page" value="<%=userName%>"> <img src="/public/icons/icons8-plus-64.png" alt=""> </button>
+        </form>
 
         </div>
 

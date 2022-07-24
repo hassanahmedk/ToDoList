@@ -1,3 +1,56 @@
 
+<script>
+    document.querySelector(".newItem-btn").addEventListener("click", function(){
+        document.querySelector(".newItem-btn").style.transform = "scale(0.9)";
+        setTimeout(() => {
+            document.querySelector(".newItem-btn").style.transform = "scale(1)";
+        }, 100) ;
+    }) 
+
+    // var elements = document.getElementsByClassName("unfilled-star");
+    // for (var i = 0; i < elements.length; i++) {
+
+    //         elements[i].addEventListener("click", function(){
+    //             this.setAttribute("src", "../public/icons/imp-filled.png");
+    //             this.setAttribute("class", "filled-star");
+    //         })
+    
+    // }
+    
+    // var elements = document.getElementsByClassName("filled-star");
+    // for (var i = 0; i < elements.length; i++) {
+
+    //         elements[i].addEventListener("click", function(){
+    //             this.setAttribute("src", "../public/icons/imp-unfilled.png");
+    //             this.setAttribute("class", "unfilled-star");
+    //         })
+    
+    // }
+
+    let items = document.getElementsByClassName("star");
+
+    for(let i=0; i<items.length; i++){
+        items[i].addEventListener("click", function(){
+            if(this.classList.contains("unfilled-star")){
+                this.setAttribute("src", "../public/icons/imp-filled.png");
+                this.setAttribute("class", "star filled-star");
+                this.parentNode.submit();
+                //document.getElementById("favoriteItem").submit();
+            } else {
+                this.setAttribute("src", "../public/icons/imp-unfilled.png");
+                this.setAttribute("class", "star unfilled-star");
+                //document.getElementById("favoriteItem").submit();
+                this.parentNode.submit();
+
+            }
+        })
+
+    }
+    //document.querySelector(".filled-star").setAttribute("src", "../public/icons/imp-unfilled.png");
+
+
+
+</script>
+
 </body>
 </html>

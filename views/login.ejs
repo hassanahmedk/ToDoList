@@ -1,6 +1,6 @@
 <%- include("header.ejs") -%> 
 
-    <section id="landing">
+    <section id="login-screen">
         <div class="login-left">
 <img class="login-pic" src="../public/illustrations/login-1.svg" alt="">
 <h2 class="login-text">
@@ -16,11 +16,17 @@
             </div>
 
             <form class="login-form" action="/" method="post">
+
                 <div class="form-inputs">
-                    <input type="text" name="username" placeholder="Enter Username" autocomplete="off">
-                    <input type="text" name="password" placeholder="Enter Password" autocomplete="off">
+                    <input type="text" name="username" placeholder="Enter Username" autocomplete="off" required>
+                    <input type="text" name="password" placeholder="Enter Password" autocomplete="off" required>
+                </div> 
+
+                <div class="form-buttons">
+                    <button class="login-button" type="submit">Login</button>
+                    <button class="signup-button" type="submit">Login</button>
                 </div>
-                <button class="login-button" type="submit">Login</button>
+
             </form>  
         </div>
 
