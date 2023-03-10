@@ -7,6 +7,9 @@ import axios from  "axios";
 import dotenv from  "dotenv";
 import cors from  "cors";
 
+import * as url from 'url';
+const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
+
 import {login, showLogin, getItems, test, addItem, changeFavorite, getImportantItems} from  "./controller/controller.js";
 
 // ENV FILE
@@ -38,6 +41,8 @@ let loggedInUser = "Hassan";
 let activeList = "Myday";
 
 app.set("view engine", "ejs");
+app.set('views', __dirname + '/views');
+
 
 app.use(express.static('public'))
 
