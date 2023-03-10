@@ -1,4 +1,4 @@
-<%- include("header.ejs") -%> 
+<%- include("partials/header") -%>
 <script src="https://kit.fontawesome.com/bdc0ef0ab3.js" crossorigin="anonymous"></script>
 
 <section id="landing">
@@ -14,20 +14,20 @@
             </div>
 
             <ul class="dashboard-options">
-                <li class="dashboard-option dashboard-option-1 active-list"> <a href="">
-                    <img src="/public/icons/heart.png" alt=""> <span>My Day</span></a>
+                <li class="dashboard-option dashboard-option-1 current"> <a class="dashboard-option" href="/current">
+                    <img style="width:25px;" src="/icons/heart.png" alt=""> <span>Current</span></a>
                 </li>
-                <li class="dashboard-option dashboard-option-2"> <a href="">
-                    <img src="/public/icons/006-favourite.png" alt=""> <span>Important</span></a>
+                <li class="dashboard-option dashboard-option-3 pending"> <a class="dashboard-option" href="/pending">
+                    <img src="/icons/002-calendar-1.png" alt=""> <span>Pending</span></a>
                 </li>
-                <li class="dashboard-option dashboard-option-3"> <a href="">
-                    <img src="/public/icons/002-calendar-1.png" alt=""> <span>Planned</span></a>
+                <li class="dashboard-option dashboard-option-2 important"> <a class="dashboard-option" href="/important">
+                    <img src="/icons/006-favourite.png" alt=""> <span>Important</span></a>
                 </li>
-                <li class="dashboard-option dashboard-option-4"> <a href="">
-                    <img src="/public/icons/009-checked-1.png" alt=""> <span>Completed</span></a>
+                <li class="dashboard-option dashboard-option-4 completed"> <a class="dashboard-option" href="/completed">
+                    <img src="/icons/009-checked-1.png" alt=""> <span>Completed</span></a>
                 </li>
-                <li class="dashboard-option dashboard-option-4"> <a href="">
-                    <img src="/public/icons/010-home.png" alt=""> <span>All Tasks</span></a>
+                <li class="dashboard-option dashboard-option-4 all"> <a class="dashboard-option" href="/all">
+                    <img src="/icons/010-home.png" alt=""> <span>All Tasks</span></a>
                 </li>
             </ul>
         </div>
@@ -35,7 +35,7 @@
         <div class="landing-list">
             <div class="list-header">
                 <h2 class="list-name">
-                    My Day
+                    <%= listTitle %>
                 </h2>
                 <h3 class="list-date">
                     Wednesday, July 06 
@@ -43,31 +43,42 @@
             </div>
             <div class="list">
         
+                <% if (items.length === 0){%>
+                    <div class="no-list-text">
+                        List is empty
+                    </div>
+                    
+                <%} else {%>
             <%  items.forEach(element => {            %>
            
                     <div class="listItem">
-                        <input type="checkbox" name="" id="">
+                        <form action="/completeItem" method="post">
+                            <input type="hidden">
+                            <input type="hidden">
+                            <input type="checkbox" name="" id="">
+                        </form>
                         <p> <%= element.data %> </p>
 
                         <form id="favoriteItem" action="/changeFavorite" method="post">
-                            <% if(element.important === true){     %>
-                                    <img onClick="this.form.submit()" value="aaa" src="../public/icons/imp-filled.png" class="unfilled-star star" alt="" srcset="">
-                                    <input style="display:none;" name="id" type="text" value="<%=element._id%>">
-                                    <input style="display:none;" name="favoriteStatus" type="text" value="true">
+                            <% if(element.favorite === true){     %>
+                                    <img onClick="this.form.submit()" value="aaa" src="/icons/imp-filled.png" class="unfilled-star star" alt="" srcset="">
+                                    <input type="hidden" name="id" value="<%=element.uniqueId%>">
+                                    <input type="hidden" name="favoriteStatus" value="true">
                                 <% } else {   %>
-                                    <img onClick="this.form.submit()" value="aaa" src="../public/icons/imp-unfilled.png" class="unfilled-star star" alt="" srcset="">
-                                    <input style="display:none;" name="id" type="text" value="<%=element._id%>">
-                                    <input style="display:none;" name="favoriteStatus" type="text" value="false">
+                                    <img onClick="this.form.submit()" value="aaa" src="/icons/imp-unfilled.png" class="unfilled-star star" alt="" srcset="">
+                                    <input type="hidden" name="id" value="<%=element.uniqueId%>">
+                                    <input type="hidden" name="favoriteStatus" value="false">
                                 <% }    %>
                         </form>
                     </div>
-            <% });                                     %>
-
+            <% });                                 %>
+            <% } %>
+ 
             </div>
         
-        <form class="add-item" action="/addItem" method="POST">
+        <form class="add-item" action="/<%= listTitle %>" method="POST">
             <input type="text" name="newItem" autocomplete="OFF">
-            <button class="newItem-btn" type="submit" name="page" value="<%=userName%>"> <img src="/public/icons/icons8-plus-64.png" alt=""> </button>
+            <button class="newItem-btn" type="submit" name="page" value="<%=listTitle%>"> <img src="/icons/icons8-plus-64.png" alt=""> </button>
         </form>
 
         </div>
@@ -75,5 +86,5 @@
     </section>
 
 
-<%- include("footer.ejs") -%> 
+    <%- include("partials/footer") -%> 
 

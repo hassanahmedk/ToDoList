@@ -1,8 +1,8 @@
-<%- include("header.ejs") -%> 
+<%- include("partials/header") -%> 
 
     <section id="login-screen">
         <div class="login-left">
-<img class="login-pic" src="../public/illustrations/login-1.svg" alt="">
+<img class="login-pic" src="/illustrations/login-1.svg" alt="">
 <h2 class="login-text">
     <span class="login-text-1">Motivate. </span> <span class="login-text-2">Create. </span><span class="login-text-3">Organize.</span> 
 </h2>
@@ -16,7 +16,9 @@
             </div>
 
             <form class="login-form" action="/" method="post">
-
+                <div class="login-error">
+                    <%= errorMsg %>
+                </div>
                 <div class="form-inputs">
                     <input type="text" name="username" placeholder="Enter Username" autocomplete="off" required>
                     <input type="text" name="password" placeholder="Enter Password" autocomplete="off" required>
@@ -24,7 +26,7 @@
 
                 <div class="form-buttons">
                     <button class="login-button" type="submit">Login</button>
-                    <button class="signup-button" type="submit">Login</button>
+                    <button class="signup-button" type="submit">Create Account</button>
                 </div>
 
             </form>  
@@ -33,5 +35,5 @@
     </section>
 
 
-<%- include("footer.ejs") -%> 
+<%- include("partials/footer") -%> 
 
